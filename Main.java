@@ -26,7 +26,20 @@ public class Main {
         // Exercise 2: Creating a Savings Account
         // Create a SavingsAccount instance
         // Perform deposit operations with interest
-        
+        SavingsAccount sav = new SavingsAccount("S-001", 1000.0, 0.03); // 3% APR
+
+        sav.deposit(500);
+        System.out.println("Balance after deposit with interest: " + sav.getBalance());
+
+        // (Optional) show polymorphism: BankAccount ref pointing to SavingsAccount
+        BankAccount poly = new SavingsAccount("S-002", 200.0, 0.06); // 6% APR
+        poly.deposit(100);
+        System.out.println("Poly balance: " + poly.getBalance());
+
+        // (Optional) apply monthly interest on entire balance
+        sav.applyMonthlyInterest();
+        System.out.println("Balance after applying monthly interest: " + sav.getBalance());
+        System.out.println("Final: " + sav);
 
         // Exercise 3: Creating a Checking Account
         // Create a CheckingAccount instance
