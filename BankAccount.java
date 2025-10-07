@@ -33,4 +33,8 @@ public class BankAccount {
     public String toString() {
         return "BankAccount {accountNumber='" + accountNumber + "', balance=" + balance + "}";
     }
+
+    protected void adjustBalance(double delta) {
+    this.balance += delta; // used by subclasses (e.g., for overdraft math)
+    }
 }

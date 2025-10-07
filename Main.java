@@ -44,7 +44,21 @@ public class Main {
         // Exercise 3: Creating a Checking Account
         // Create a CheckingAccount instance
         // Perform withdrawal operations with overdraft
+        CheckingAccount chk = new CheckingAccount("C-001", 300.0, 200.0, 35.0);
 
+        System.out.println("Start balance: " + chk.getBalance());
+
+        boolean w1 = chk.withdraw(200.0); // OK, stays positive
+        System.out.println("Withdraw 200 -> " + w1 + " | balance: " + chk.getBalance());
+
+        boolean w2 = chk.withdraw(150.0); // crosses into negative: fee applies
+        System.out.println("Withdraw 150 -> " + w2 + " | balance: " + chk.getBalance());
+
+        boolean w3 = chk.withdraw(200.0); // would exceed -200 limit -> refused
+        System.out.println("Withdraw 200 -> " + w3 + " | balance: " + chk.getBalance());
+
+        System.out.println("Final: " + chk);
+    
         // Exercise 4: Managing Customer's Accounts
         // Create a BankCustomer instance
         // Add multiple accounts and display total balance
