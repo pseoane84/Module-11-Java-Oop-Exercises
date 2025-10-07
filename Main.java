@@ -62,6 +62,21 @@ public class Main {
         // Exercise 4: Managing Customer's Accounts
         // Create a BankCustomer instance
         // Add multiple accounts and display total balance
+        BankCustomer cust = new BankCustomer("CUST-001", "Pablo Seoane");
+
+        sav = new SavingsAccount("S-100", 1000.0, 0.03); // 3% APR
+        sav.deposit(500.0); // adds 500 + monthly interest on deposit (≈ 1.25)
+
+        chk = new CheckingAccount("C-200", 300.0, 200.0, 35.0);
+        chk.withdraw(200.0);    // stays positive
+        chk.withdraw(150.0);    // crosses negative, fee applies in our design
+
+        cust.addAccount(sav);
+        cust.addAccount(chk);
+
+        // Show details
+        cust.printSummary();
+        System.out.printf("Computed total balance: %.2f%n", cust.getTotalBalance());
 
         // Exercise 5: Transaction History
         // Add transactions to accounts and retrieve history
