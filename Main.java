@@ -1,12 +1,13 @@
 public class Main {
-    public static void main(String[] args) {
-        // runExercise1();
-        // runExercise2();
-        // runExercise3();
-        // runExercise4();
-        // runExercise5();
-        // runExercise6();
-        runExercise7();
+ public static void main(String[] args) {
+    // runExercise1();
+    // runExercise2();
+    // runExercise3();
+    // runExercise4();
+    // runExercise5();
+    // runExercise6();
+    // runExercise7();
+    runExercise8();
 
         // Exercise 0: Using the Example Person Class
         // Create an instance of Person
@@ -168,6 +169,37 @@ public class Main {
 
     // Exercise 8: Override Withdrawal Method
     // Demonstrate overridden withdrawal method
+    static void runExercise8() {
+    System.out.println("\n=== Exercise 8: Override Withdrawal Method ===");
+
+    BankAccount base = new BankAccount("B-100", 500.0);
+    SavingsAccount sav = new SavingsAccount("S-100", 500.0, 0.03, 200.0); // min balance = 200
+
+    // Try to withdraw 350 from both accounts
+    boolean baseOk = base.withdraw(350.0); // leaves 150, allowed by base class
+    boolean savOk1 = sav.withdraw(350.0);  // would leave 150 < 200 -> declined by override
+
+    System.out.println("Base withdraw 350 -> " + baseOk + " | balance: " + base.getBalance());
+    System.out.println("Savings withdraw 350 (min 200) -> " + savOk1 + " | balance: " + sav.getBalance());
+
+    // Withdraw 250 from savings (500 - 250 = 250 >= 200) -> allowed
+    boolean savOk2 = sav.withdraw(250.0);
+    System.out.println("Savings withdraw 250 -> " + savOk2 + " | balance: " + sav.getBalance());
+
+    // Polymorphism: a BankAccount reference pointing to a SavingsAccount
+    BankAccount poly = new SavingsAccount("S-200", 400.0, 0.04, 150.0);
+    boolean polyOk = poly.withdraw(300.0); // calls SavingsAccount.withdraw (override), not base
+    System.out.println("Poly (BankAccount->Savings) withdraw 300 -> " + polyOk +
+            " | balance: " + poly.getBalance());
+
+    // Optional: print statements to see the logged WITHDRAW / WITHDRAW_DECLINED
+    System.out.println("\n-- Savings S-100 Statement --");
+    sav.printStatement();
+
+    System.out.println("\n-- Poly S-200 Statement --");
+    poly.printStatement();
+}
+
 
     // Complete all exercises and print results
 }
