@@ -62,7 +62,7 @@ public class Main {
         // Exercise 4: Managing Customer's Accounts
         // Create a BankCustomer instance
         // Add multiple accounts and display total balance
-        BankCustomer cust = new BankCustomer("CUST-001", "Pablo Seoane");
+        BankCustomer cust1 = new BankCustomer("CUST-001", "Pablo Seoane");
 
         sav = new SavingsAccount("S-100", 1000.0, 0.03); // 3% APR
         sav.deposit(500.0); // adds 500 + monthly interest on deposit (≈ 1.25)
@@ -71,15 +71,42 @@ public class Main {
         chk.withdraw(200.0);    // stays positive
         chk.withdraw(150.0);    // crosses negative, fee applies in our design
 
-        cust.addAccount(sav);
-        cust.addAccount(chk);
+        cust1.addAccount(sav);
+        cust1.addAccount(chk);
 
         // Show details
-        cust.printSummary();
-        System.out.printf("Computed total balance: %.2f%n", cust.getTotalBalance());
+        cust1.printSummary();
+        System.out.printf("Computed total balance: %.2f%n", cust1.getTotalBalance());
 
         // Exercise 5: Transaction History
         // Add transactions to accounts and retrieve history
+        BankCustomer cust = new BankCustomer("CUST-002", "Pablo S.");
+
+        SavingsAccount sav2 = new SavingsAccount("S-300", 1000.0, 0.03);
+        sav2.deposit(500.0);              // logs DEPOSIT + INTEREST_CREDIT
+        sav2.applyMonthlyInterest();      // if you kept this method, it should also log
+        cust.addAccount(sav2);
+
+        CheckingAccount chk2 = new CheckingAccount("C-900", 300.0, 200.0, 35.0);
+        chk2.withdraw(200.0);             // WITHDRAW
+        chk2.withdraw(150.0);             // WITHDRAW + OVERDRAFT_FEE
+        chk2.withdraw(200.0);             // WITHDRAW_DECLINED (would exceed limit)
+        cust.addAccount(chk2);
+
+        // Retrieve and print histories
+        System.out.println("\n--- SAVINGS HISTORY ---");
+        sav2.printStatement();
+
+        System.out.println("\n--- CHECKING HISTORY ---");
+        chk2.printStatement();
+
+        // Or iterate yourself:
+        System.out.println("\nLast 3 transactions on checking:");
+        chk2.getHistory().stream()
+        .skip(Math.max(0, chk2.getHistory().size() - 3))
+        .forEach(t -> System.out.printf("%s - %s: %.2f (bal: %.2f) %s%n",
+                t.timestamp(), t.type(), t.amount(), t.balanceAfter(),
+                t.note() == null ? "" : "- " + t.note()));
 
         // Exercise 6: Generate Banking Report
         // Generate and display a customer's banking report

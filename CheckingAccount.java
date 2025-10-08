@@ -16,25 +16,27 @@ public class CheckingAccount extends BankAccount {
         this.overdraftFee = overdraftFee;
     }
 
-    @Override
-    public boolean withdraw(double amount) {
-        if (amount <= 0) throw new IllegalArgumentException("Withdrawal must be > 0");
+   @Override
+public boolean withdraw(double amount) {
+    if (amount <= 0) throw new IllegalArgumentException("Withdrawal must be > 0");
 
-        double before = getBalance();
-        double after  = before - amount;
+    double before = getBalance();
+    double after  = before - amount;
 
-        // refuse if it would exceed the overdraft limit
-        if (after < -overdraftLimit) return false;
-
-        // perform the withdrawal
-        adjustBalance(-amount);
-
-        // if we crossed from non-negative to negative, charge fee (once per crossing)
-        if (overdraftFee > 0 && before >= 0 && after < 0) {
-            adjustBalance(-overdraftFee);
-        }
-        return true;
+    if (after < -overdraftLimit) {
+        log("WITHDRAW_DECLINED", amount, "Exceeds overdraft limit");
+        return false;
     }
+
+    adjustBalance(-amount);
+    log("WITHDRAW", amount, null);
+
+    if (overdraftFee > 0 && before >= 0 && after < 0) {
+        adjustBalance(-overdraftFee);
+        log("OVERDRAFT_FEE", overdraftFee, "Crossed into negative");
+    }
+    return true;
+}
 
     public double getOverdraftLimit() { return overdraftLimit; }
     public double getOverdraftFee()   { return overdraftFee; }

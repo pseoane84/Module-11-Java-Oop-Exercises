@@ -1,6 +1,6 @@
 # Module 11 – Relational Databases and MVC
 User: Pablo Seoane
-AI helper: ChatGPT
+
 
 ## 🎯 Purpose
 
@@ -22,6 +22,7 @@ AI helper: ChatGPT
 
 ## ✏️ Prompt - 01
 
+AI helper: ChatGPT
 **📎 Context:** First I created a new project and attached the Business Document and Grading Sheet for Mod 11.
 I have Installed Java (v17) and verified the installation. I have also created a new repo and cloned the repo provided by Codeboxx with Java exercises.
 
@@ -58,13 +59,53 @@ chore(main): demo BankAccount operations in Main
 
 ## ✏️ Prompt - 02
 
-**📎 Context:** Write what you were working on here
+AI helper: Copilot
+**📎 Context:** Im working on exercise #5, I created Transaction.java, and made some changes into SavingsAccount.java and CheckingAcount.java. After those updates and creating the new code for exercise #5 in Main.java 5 PROBLEMS popped in my terminal.
 
-Paste your prompt or question here
+With right click in the first error I asked Copilot to explain problem
 
 ## 🤖 Response - 02
 
-Paste the AI's answer here
+This error means that the SavingsAccount class does not have a method called applyMonthlyInterest(). To fix this, you need to define the method inside the SavingsAccount class.
+
+Here's an example of how you might implement it:
+
+// ...existing code...
+public class SavingsAccount {
+    private double balance;
+    private double annualInterestRate;
+
+    // ...existing constructors and methods...
+
+    public void applyMonthlyInterest() {
+        double monthlyInterest = balance * (annualInterestRate / 12);
+        balance += monthlyInterest;
+    }
+
+    // ...existing code...
+}
+
+
+Explanation:
+
+The method calculates monthly interest by dividing the annual rate by 12.
+It then adds the interest to the account balance.
+Gotcha:
+Make sure annualInterestRate is expressed as a decimal (e.g., 0.05 for 5%). If it's a percentage, divide by 100 first.
+
+Let me know if you need help adapting this to your specific class structure!
+
+The conversation continues like this:
+
+(PS) Im attaching the file so you can diagnose and proceed to make the update
+
+(Copilot) The method applyMonthlyInterest() has been added to the SavingsAccount class. It now applies monthly interest to the entire balance and logs the transaction, resolving the error in your code.
+
+You can now call sav.applyMonthlyInterest() in your Main.java without issues. Let me know if you need further help or want to test the update!
+
+That fix solved the first 2 PROBLEMS.
+
+The next 3 errors where related to duplicate local variables (cust, sav and chk) I fix those with the right click Fix option.
 
 ---
 
