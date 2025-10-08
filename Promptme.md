@@ -111,13 +111,22 @@ The next 3 errors where related to duplicate local variables (cust, sav and chk)
 
 ## ✏️ Prompt - 03
 
-**📎 Context:** Write what you were working on here
+AI helper: Copilot and ChatGPT
+**📎 Context:** creating file BankingReport.java
 
-Paste your prompt or question here
+I have run into some problems with the BankingReport.java file you sent. According to Copilot its because you have used Java 25 features and I have being instructed to work and install JDK 17. Forgot to gave you that information as part of the context for my project. Copilot has made some changes in the file, this is the current code (...)
+
+Please take this into account, let me know if I need to make any changes to the code you sent for Main.java
 
 ## 🤖 Response - 03
 
-Paste the AI's answer here
+You’re good—your BankingReport.java is now JDK-17 friendly. The only “too new” bit I’d used was the arrow-style switch; your classic switch … case … break; fix is perfect.
+
+Do you need to change Main.java?
+
+Only make sure you call the report. Nothing else in Main.java needs JDK-25 features.
+
+Here’s a clean JDK-17 snippet you can drop into Main.java (keep your other exercise runners as you like):
 
 ---
 

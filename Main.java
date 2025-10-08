@@ -108,8 +108,28 @@ public class Main {
                 t.timestamp(), t.type(), t.amount(), t.balanceAfter(),
                 t.note() == null ? "" : "- " + t.note()));
 
-        // Exercise 6: Generate Banking Report
-        // Generate and display a customer's banking report
+            // Exercise 6: Generate Banking Report
+            // Generate and display a customer's banking report
+        }
+    
+        static void runExercise6() {
+            BankCustomer cust = new BankCustomer("CUST-003", "Pablo Seoane");
+    
+            SavingsAccount sav = new SavingsAccount("S-777", 1000.0, 0.03);
+            sav.deposit(500.0);
+            // If you kept this method and it logs interest on the full balance, you can call it:
+            // sav.applyMonthlyInterest();
+    
+            CheckingAccount chk = new CheckingAccount("C-888", 300.0, 200.0, 35.0);
+            chk.withdraw(200.0);
+            chk.withdraw(150.0);
+            chk.withdraw(200.0);
+    
+            cust.addAccount(sav);
+            cust.addAccount(chk);
+    
+            BankingReport.printCustomerReport(cust);
+        }
 
         // Exercise 7: Update Interest Rates
         // Update the interest rate and observe calculations
@@ -118,5 +138,4 @@ public class Main {
         // Demonstrate overridden withdrawal method
 
         // Complete all exercises and print results
-    }
 }
