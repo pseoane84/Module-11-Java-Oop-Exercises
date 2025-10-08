@@ -1,5 +1,12 @@
 public class Main {
     public static void main(String[] args) {
+        // runExercise1();
+        // runExercise2();
+        // runExercise3();
+        // runExercise4();
+        // runExercise5();
+        // runExercise6();
+        runExercise7();
 
         // Exercise 0: Using the Example Person Class
         // Create an instance of Person
@@ -108,34 +115,59 @@ public class Main {
                 t.timestamp(), t.type(), t.amount(), t.balanceAfter(),
                 t.note() == null ? "" : "- " + t.note()));
 
-            // Exercise 6: Generate Banking Report
-            // Generate and display a customer's banking report
-        }
-    
-        static void runExercise6() {
-            BankCustomer cust = new BankCustomer("CUST-003", "Pablo Seoane");
-    
-            SavingsAccount sav = new SavingsAccount("S-777", 1000.0, 0.03);
-            sav.deposit(500.0);
-            // If you kept this method and it logs interest on the full balance, you can call it:
-            // sav.applyMonthlyInterest();
-    
-            CheckingAccount chk = new CheckingAccount("C-888", 300.0, 200.0, 35.0);
-            chk.withdraw(200.0);
-            chk.withdraw(150.0);
-            chk.withdraw(200.0);
-    
-            cust.addAccount(sav);
-            cust.addAccount(chk);
-    
-            BankingReport.printCustomerReport(cust);
-        }
+        // Exercise 6: Generate Banking Report
+        // Generate and display a customer's banking report
+        // runExercise6(); // Uncomment to run
+    }
 
-        // Exercise 7: Update Interest Rates
-        // Update the interest rate and observe calculations
+    static void runExercise6() {
+        BankCustomer cust = new BankCustomer("CUST-003", "Pablo Seoane");
 
-        // Exercise 8: Override Withdrawal Method
-        // Demonstrate overridden withdrawal method
+        SavingsAccount sav = new SavingsAccount("S-777", 1000.0, 0.03);
+        sav.deposit(500.0);
+        // If you kept this method and it logs interest on the full balance, you can call it:
+        // sav.applyMonthlyInterest();
 
-        // Complete all exercises and print results
+        CheckingAccount chk = new CheckingAccount("C-888", 300.0, 200.0, 35.0);
+        chk.withdraw(200.0);
+        chk.withdraw(150.0);
+        chk.withdraw(200.0);
+
+        cust.addAccount(sav);
+        cust.addAccount(chk);
+
+        BankingReport.printCustomerReport(cust);
+    }
+
+    // Exercise 7: Update Interest Rates
+    // Update the interest rate and observe calculations
+    static void runExercise7() {
+        System.out.println("\n=== Exercise 7: Update Interest Rates ===");
+        SavingsAccount sav = new SavingsAccount("S-APR", 1000.0, 0.03); // 3% APR
+
+        // Deposit BEFORE rate change (3% APR -> 0.25% monthly)
+        sav.deposit(600.0); // adds 600 + 1.50
+        System.out.printf("After $600 deposit at 3%% APR: %.2f%n", sav.getBalance()); // 1601.50
+
+        // Update APR to 6%
+        sav.setAnnualInterestRate(0.06);
+        System.out.println("APR updated to 6%.");
+
+        // Deposit AFTER rate change (6% APR -> 0.5% monthly)
+        sav.deposit(400.0); // adds 400 + 2.00
+        System.out.printf("After $400 deposit at 6%% APR: %.2f%n", sav.getBalance()); // 2003.50
+
+        // Apply monthly interest on full balance at the new rate
+        sav.applyMonthlyInterest(); // + (2003.50 * 0.5%) = +10.02
+        System.out.printf("After monthly interest on full balance at 6%% APR: %.2f%n", sav.getBalance()); // 2013.52
+
+        // Optional: print the transaction log
+        System.out.println("\n-- Savings Statement --");
+        sav.printStatement();
+    }
+
+    // Exercise 8: Override Withdrawal Method
+    // Demonstrate overridden withdrawal method
+
+    // Complete all exercises and print results
 }
