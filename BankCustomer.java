@@ -43,6 +43,14 @@ public class BankCustomer {
         System.out.println("Total balance: " + getTotalBalance());
     }
 
+    public void generateReport() {
+        System.out.println("Customer: " + name + " (" + id + ")");
+        for (BankAccount a : accounts) {
+            System.out.println(" - " + a.toString());
+        }
+        System.out.printf("Total balance: %.2f%n", getTotalBalance());
+    }
+
     @Override
     public String toString() {
         return "BankCustomer{id='" + id + "', name='" + name + "', accounts=" + accounts.size() + "}";

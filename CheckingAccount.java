@@ -43,9 +43,9 @@ public boolean withdraw(double amount) {
 
     @Override
     public String toString() {
-        return "CheckingAccount {accountNumber='" + getAccountNumber() +
-               "', balance=" + getBalance() +
-               ", overdraftLimit=" + overdraftLimit +
-               ", overdraftFee=" + overdraftFee + "}";
+        return "CheckingAccount {accountNumber='" + getAccountNumber()
+                + "', balance=" + getBalance()
+                + ", overdraftLimit=" + overdraftLimit
+                + ", overdraftFee=" + overdraftFee + "}";
     }
 }

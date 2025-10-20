@@ -71,11 +71,15 @@ public class SavingsAccount extends BankAccount {
         }
     }
 
+    public void updateInterestRate(double newRate) {
+        setAnnualInterestRate(newRate);
+    }
+
     @Override
     public String toString() {
-        return "SavingsAccount {accountNumber='" + getAccountNumber() +
-               "', balance=" + getBalance() +
-               ", annualInterestRate=" + annualInterestRate +
-               ", minimumBalance=" + minimumBalance + "}";
+        return "SavingsAccount {accountNumber='" + getAccountNumber()
+                + "', balance=" + getBalance()
+                + ", annualInterestRate=" + annualInterestRate
+                + ", minimumBalance=" + minimumBalance + "}";
     }
 }

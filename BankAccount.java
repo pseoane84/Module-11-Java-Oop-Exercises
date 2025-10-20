@@ -50,6 +50,18 @@ public class BankAccount {
         return Collections.unmodifiableList(history);
     }
 
+   
+    public void recordTransaction(String entry) {
+        if (entry == null || entry.isBlank()) {
+            throw new IllegalArgumentException("transaction entry required");
+        }
+        log("NOTE", 0.0, entry);
+    }
+
+    public List<Transaction> getTransactionHistory() {
+        return getHistory();
+    }
+
     public void printStatement() {
         System.out.println("Statement for " + accountNumber);
         for (Transaction t : history) {
